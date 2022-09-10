@@ -1,0 +1,69 @@
+body {
+  background-image: url(/static/img/copy.png);
+  background-repeat: initial;
+  background-color: #fff445;
+}
+
+.urls {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  width: 23%;
+  height: 50%;
+  margin-top: 10%;
+  margin-left: 6%;
+}
+
+.NavBar {
+  background-color: red;
+  width: auto;
+  height: 15%;
+}
+
+.smurl {
+  font-size: 40px;
+}
+
+.tablecls {
+  position: absolute;
+  width: 60%;
+  height: 25%;
+  margin-top: 10%;
+  margin-left: 31%;
+  background-color: rgb(250, 251, 252);
+}
+
+.urlbox {
+  text-align: center;
+  border-radius: 1%;
+  height: 25%;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.trdata {
+  width: 588px;
+  height: auto;
+}
+
+.frof {
+  background-color: #41a736;
+  margin-right: 15%;
+  font-size: 18px;
+  font-family: sans-serif;
+  width: 10%;
+  height: auto;
+  text-align: center;
+  text-decoration: none;
+}
+
+a.btn-outline-dark {
+  text-decoration: none;
+}
+
+.unsign {
+  background-color: rgb(250, 251, 252);
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  left: 32%;
+}

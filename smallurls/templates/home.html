@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static%}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bootstrapcdn/Css Start-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="/static/js/script.js"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="stylesheet" href="/static/css/Login.css">
+  <!-- bootstrapcdn/Css End-->
+  <title>Home</title>
+</head>
+
+<body>
+  <!-- Nav bar start -->
+  <nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark NavBar">
+    <div class="container-fluid">
+      <a class="navbar-brand smurl" href="">Small Urls</a>
+    </div>
+    <div class="frof">
+      {% if user.is_authenticated %}
+      {{user}}
+      <a class="btn-outline-dark frofa" href="{% url 'logout_page' %}">Logout</a>
+      {%else%}
+      {{"Guest"}} <br> <a class="btn-outline-dark frofa" href="{% url 'acc' %}">Login</a>
+      {%endif%}
+    </div>
+  </nav>
+  <!-- Nav bar end -->
+
+  <!-- Urls Post -->
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="urls">
+      <input type="text" class="urlbox" name="urls" placeholder="Your Long URLS"> <br>
+      <input type="text" class="urlbox" name="alias" placeholder="Alias"> <br><br>
+      <input type="submit" class="btn btn-block btn-dark" value="Small Urls">
+      <!-- <span>Token</span> {{token}} -->
+    </div>
+  </form>
+
+  <!-- Showing Data -->
+  {% if user.is_authenticated %}
+  <table class="table table-hover tablecls">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Small Urls </th>
+        <th scope="col">Date</th>
+        <th scope="col">Copy</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in data %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td id="http://127.0.0.1:8000/{{p.token}}" class="trdata">http://127.0.0.1:8000/{{p.token}}</td>
+        <td>{{p.date}}</td>
+        <td>
+          <button id="button1" onclick="CopyToClipboard('http://127.0.0.1:8000/{{p.token}}')">Copy</button>
+        </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="tablecls">
+    {% if anonymous.uuid %}
+    <span id="div11"> http://127.0.0.1:8000/{{anonymous.uuid}}</span>
+    <button id="button1" onclick="CopyToClipboard('div11')">Copy</button>
+    <br /><br />
+    {% else %}
+    <p>
+      This is guest mode, Login for more Feature.
+    </p>
+    {%endif%}
+  </div>
+  <div class="unsign">
+    <ul>
+      <li>This is Guest Mood</li>
+      <li><a class="btn-light" href="{% url 'acc' %}">Login</a> for best Feature</li>
+      <li>More Feature</li>
+    </ul>
+  </div>
+
+  {% endif %}
+</body>
+
+<script>
+  var x = document.getElementById("login");
+  var y = document.getElementById("register");
+  var z = document.getElementById("btn");
+
+  // Register and login Function.
+  function register() {
+    x.style.left = "-400px";
+    y.style.left = "50px";
+    z.style.left = "110px";
+  }
+
+  function login() {
+    x.style.left = "50px";
+    y.style.left = "450px";
+    z.style.left = "0px";
+  }
+</script>
+
+</html>
